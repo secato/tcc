@@ -14,3 +14,12 @@
     max-width: 90%;
 }
 
+footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #0c121c;
+    width: inherit;
+    height: 50px;
+    border-radius: 5px 5px 0px 0px;
+    color: white;
+}
