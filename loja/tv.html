@@ -18,10 +18,11 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+    <script src="js/functions.js"></script>
 </head>
 
 <body>
-
     <div class="container">
         <!-- navbar superior -->
         <nav class="navbar navbar-inverse navbar-superior" role="navigation">
@@ -62,6 +63,7 @@
         </nav>
         <!-- navbar superior -->
 
+
         <!-- navbar inferior -->
         <nav class="navbar navbar-inverse navbar-inferior">
             <ul class="nav navbar-nav">
@@ -91,67 +93,81 @@
                 </li>
             </ul>
         </nav>
-        <!-- navbar inferior -->
 
-        <!-- produtos em destaque -->
         <div class="row">
-            <a href="tv.html">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-5 col-md-5">
                 <div class="thumbnail">
-                    <img src="img/tv.jpg" alt="...">
+                    <img id="imgBox" src="img/tv.jpg" alt="...">
                     <div class="caption">
-                        <h5>Smart TV LED 32" Samsung 32J4300</h5>
                         <br>
-                        <h4>R$ 1499,00</h4>
-                        <h6>12 X R$150,50</h6>
-                        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                                role="button">Button</a></p> -->
+                        <div class="row center-block">
+                            <div class="col-md-4 ">
+                                <a onclick="mudarImagem('img/tv.jpg');" class="thumbnail produto-imagem-thumb">
+                                   <img src="img/tv.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a onclick="mudarImagem('img/tv2.jpg');" class="thumbnail produto-imagem-thumb">
+                                    <img src="img/tv2.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a onclick="mudarImagem('img/tv_qr.jpg');" class="thumbnail produto-imagem-thumb">
+                                    <img src="img/tv_qr.jpg" alt="...">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </a>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="img/armario.png" alt="...">
-                    <div class="caption">
-                        <h5>Armário Multiuso Nápoli 2 Portas POLIMAN</h5>
-                        <br>
-                        <h4>R$ 149,00</h4>
-                        <h6>12 X R$15,00</h6>
-                        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                                    role="button">Button</a></p> -->
+            <div class="col-sm-7 col-md-7">
+                <div class="caption">
+                    <h3>Smart TV LED 32" Samsung 32J4300</h3>
+                    <div class="thumbnail">
+                        <div class="row center-block">
+                            <div class="col-sm-6">
+                                <h3>
+                                    <strike> R$ 1499,00</strike>
+                                </h3>
+                                <hgroup>
+                                    <h3><strong>   R$ 1399,00</strong></h3>
+                                    <h4>no boleto</h4>
+                                </hgroup>
+
+                                <hr>
+                                <h5>12 X R$150,50 no cartão</h5>
+
+                            </div>
+                            <div class="col-sm-6 btn-group-vertical">
+                                <br>
+                                <a href="#" class="btn btn-success btn-lg" role="button">Comprar</a>
+                                <a href="#" class="btn btn-default btn-lg" role="button">Adicionar ao carrinho</a>
+                                <br><br>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="CEP" aria-describedby="basic-addon2">
+                                    <span class="input-group-addon" id="basic-addon2">Calcular Frete</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="alert alert-info">
+                        <a class="btn btn-lg btn-warning" href="#" role="button"> <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> &nbsp;Visualize em 3D</a>
+                        <br>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Obtenha</strong> nosso aplicativo móvel, escaneie o código de barras do produto do seu interesse
+                        e o visualize no seu ambiente.
+                    </div>
+
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="img/geladeira.png" alt="...">
-                    <div class="caption">
-                        <h5>Geladeira Brastemp Frost Free Duplex Clean BRM39EB</h5>
-                        <br>
-                        <h4>R$ 1699,00</h4>
-                        <h6>12 X R$161,48</h6>
-                        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                                        role="button">Button</a></p> -->
-                    </div>
-                </div>
-            </div>
+
+            <!-- </div> -->
 
         </div>
 
-    
-        <footer class="row">
-            Teste
-        </footer>
-    
-
-    </div>
-
-
-    <!-- jQuery -->
-    <script src="./assets/jquery/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <!-- jQuery -->
+        <script src="./assets/jquery/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
-
-</html>
