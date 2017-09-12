@@ -14,12 +14,38 @@
     max-width: 90%;
 }
 
+.produto
+{
+        transition:all 0.3s ease;
+}
+
+.produto:hover div div h4{
+    color: rgb(184, 169, 5);
+}
+
+
+
+.produto:hover div div h6{
+    color: rgb(184, 169, 5);
+}
+
+
+.produto:hover
+{
+        transform: scale(1.02);
+        opacity: 0.8;
+}
+
 .produto-imagem {
     max-height: 320px;
 }
 
 .produto-imagem-thumb {
     width: 80%;
+}
+
+.googlePlayBadge {
+    max-width: 35%;
 }
 
 footer {
