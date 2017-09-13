@@ -5,10 +5,13 @@
 .navbar-inferior {
     margin-top: -20px;
     border-radius: 0px 0px 5px 5px;
-
+    margin-bottom: 10px;
     border-top: 0px;
 }
 
+.breadcrumb {
+    margin-bottom: 10px;
+}
 .search-bar{
     min-width: 500px;
     max-width: 90%;
@@ -43,6 +46,7 @@
 .produto-imagem-thumb {
     width: 80%;
 }
+
 
 .googlePlayBadge {
     max-width: 35%;
