@@ -63,7 +63,6 @@
         </nav>
         <!-- navbar superior -->
 
-
         <!-- navbar inferior -->
         <nav class="navbar navbar-inverse navbar-inferior">
             <ul class="nav navbar-nav">
@@ -104,8 +103,10 @@
             <div class="col-sm-5 col-md-5">
                 <div class="thumbnail">
                     <img id="imgBox" src="img/tv.jpg" alt="...">
+
                     <div class="caption">
-                        <br>
+                        <a onclick="copyUrl('https://secato.github.io/tcc/loja/models/tv');" id="copiarUrlButton" class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Copiar URL</a>
+                        <!-- <br> -->
                         <div class="row center-block">
                             <div class="col-md-4 ">
                                 <a onclick="mudarImagem('img/tv.jpg');" class="thumbnail produto-imagem-thumb">
@@ -118,7 +119,8 @@
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <a onclick="mudarImagem('img/tv_qr.jpg');" class="thumbnail produto-imagem-thumb">
+
+                                <a onclick="mudarImagem('img/tv_qr.jpg'); window.mobilecheck();" class="thumbnail produto-imagem-thumb">
                                     <img src="img/tv_qr.jpg" alt="...">
                                 </a>
                             </div>
@@ -164,15 +166,17 @@
                         <br>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
-                        <strong>&nbsp;Visualize em 3D</strong>, obtenha nosso aplicativo móvel, escaneie o código de barras ao lado
-                        e visualize o produto no seu ambiente.
+                        <strong>&nbsp;Visualize em 3D</strong>, obtenha nosso aplicativo móvel, escaneie o código de barras
+                        ao lado e visualize o produto no seu ambiente.
                     </div>
 
                 </div>
             </div>
 
             <footer class="navbar-fixed-bottom">
-                    esenvolvido por Felipe Secato como parte do seu trabalho de conclusão de curso. Mais informações no repositório <a href="https://github.com/secato/tcc">github</a>
+                esenvolvido por Felipe Secato como parte do seu trabalho de conclusão de curso. Mais informações no repositório
+                <a
+                    href="https://github.com/secato/tcc">github</a>
             </footer>
 
         </div>
