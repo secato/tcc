@@ -101,10 +101,12 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	IEnumerator AsyncDownloadModel (string url)
 	{
+		Debug.Log (url);
 		downloadImage.enabled = true;
 		UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequest.GetAssetBundle (url, 0);
 		//yield return request.Send ();
 		request.Send();
+
 
 		txtResult.text = "Downloading...";
 		if (request.isError) {
