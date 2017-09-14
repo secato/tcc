@@ -13,6 +13,7 @@ window.mobilecheck = function () {
     var btnCopiarUrl = document.getElementById("btnCopiarUrl");
     if (check) {
         btnCopiarUrl.style.visibility = "visible";
+
     }
     else {
         btnCopiarUrl.style.visibility = "hidden";
