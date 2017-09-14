@@ -22,7 +22,7 @@
     <script src="js/functions.js"></script>
 </head>
 
-<body>
+<body onload="window.mobilecheck();">
     <div class="container">
         <!-- navbar superior -->
         <nav class="navbar navbar-inverse navbar-superior" role="navigation">
@@ -103,10 +103,7 @@
             <div class="col-sm-5 col-md-5">
                 <div class="thumbnail">
                     <img id="imgBox" src="img/tv.jpg" alt="...">
-
                     <div class="caption">
-                        <a onclick="copyUrl('https://secato.github.io/tcc/loja/models/tv');" id="copiarUrlButton" class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Copiar URL</a>
-                        <!-- <br> -->
                         <div class="row center-block">
                             <div class="col-md-4 ">
                                 <a onclick="mudarImagem('img/tv.jpg');" class="thumbnail produto-imagem-thumb">
@@ -119,10 +116,10 @@
                                 </a>
                             </div>
                             <div class="col-md-4">
-
-                                <a onclick="mudarImagem('img/tv_qr.jpg'); window.mobilecheck();" class="thumbnail produto-imagem-thumb">
+                                <a onclick="mudarImagem('img/tv_qr.jpg');" class="thumbnail produto-imagem-thumb">
                                     <img src="img/tv_qr.jpg" alt="...">
                                 </a>
+                                <button onclick="copyUrl('https://secato.github.io/tcc/loja/models/tv');" id="btnCopiarUrl" style="visibility: hidden;" type="button" class="btn btn-large btn-block btn-default">Copiar URL</button>
                             </div>
                         </div>
                     </div>
@@ -174,9 +171,7 @@
             </div>
 
             <footer class="navbar-fixed-bottom">
-                esenvolvido por Felipe Secato como parte do seu trabalho de conclusão de curso. Mais informações no repositório
-                <a
-                    href="https://github.com/secato/tcc">github</a>
+                Desenvolvido por Felipe Secato como parte do trabalho de conclusão de curso. Mais informações no <a href="https://github.com/secato/tcc">repositório</a>
             </footer>
 
         </div>

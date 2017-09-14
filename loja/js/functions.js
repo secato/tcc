@@ -1,7 +1,6 @@
 function mudarImagem(url) {
     document.getElementById("imgBox").src = url;
     var botao = document.getElementById("copiarUrlButton");
-    botao.style.visibility = "hidden";
 }
 
 window.mobilecheck = function () {
@@ -11,10 +10,12 @@ window.mobilecheck = function () {
     })(navigator.userAgent || navigator.vendor || window.opera);
 
     console.log(check);
-
-    if (!check) {
-        var botao = document.getElementById("copiarUrlButton");
-        botao.style.visibility = "visible";
+    var btnCopiarUrl = document.getElementById("btnCopiarUrl");
+    if (check) {
+        btnCopiarUrl.style.visibility = "visible";
+    }
+    else {
+        btnCopiarUrl.style.visibility = "hidden";
     }
 };
 
