@@ -17,15 +17,23 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	GameObject previewObject;
 
+	public Image downloadImage;
+
+	public GameObject inputUrl;
+
 	// Use this for initialization
 	IEnumerator Start ()
 	{
+		rawImage.enabled = false;
+		downloadImage.enabled = false;
+		inputUrl.SetActive (false);
+
 		yield return Application.RequestUserAuthorization (UserAuthorization.WebCam);
 
 		if (StaticData.objeto) {
 			PreviewModel ();
 		} else {
-			ScanQRCode ();
+			//ScanQRCode ();
 			//HandleOnQRCodeFound (ZXing.BarcodeFormat.AZTEC, "http://speedtest.ftp.otenet.gr/files/test1Gb.db");
 		}
 
@@ -40,7 +48,8 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	void HandleOnQRCodeFound (ZXing.BarcodeFormat barCodeType, string barCodeValue)
 	{
-		Debug.Log (barCodeType + " __ " + barCodeValue);
+		//Debug.Log (barCodeType + " __ " + barCodeValue);
+		rawImage.enabled = false;
 		txtResult.text = barCodeValue;
 		StartCoroutine (AsyncDownloadModel (barCodeValue));
 	}
@@ -52,8 +61,8 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	public void ScanQRCode ()
 	{
+		rawImage.enabled = true;
 		if (previewObject) {
-			rawImage.enabled = true;
 			txtResult.text = "";
 			Destroy (previewObject);
 		}
@@ -92,13 +101,12 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	IEnumerator AsyncDownloadModel (string url)
 	{
+		downloadImage.enabled = true;
 		UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequest.GetAssetBundle (url, 0);
-		yield return request.Send ();
+		//yield return request.Send ();
+		request.Send();
 
-		//Debug.Log (request.downloadProgress);
-//		while (!request.isDone) {
-//			txtResult.text = "Realizando o download...";
-//		}
+		txtResult.text = "Downloading...";
 		if (request.isError) {
 			Debug.Log (request.error);
 			txtResult.text = request.error;
@@ -106,12 +114,14 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 			while (!request.isDone) {
 				txtResult.text = request.downloadProgress.ToString();
+				yield return null;
 			}
 			txtResult.text = "Download concluído...";
 			AssetBundle bundle = DownloadHandlerAssetBundle.GetContent (request);
 
 
 			StaticData.objeto = bundle.LoadAsset<GameObject> ("modelo");
+			downloadImage.enabled = false;
 			PreviewModel ();
 			bundle.Unload (false);
 		}
@@ -130,8 +140,21 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	public void VoltarPrincipal ()
 	{
-		Initiate.Fade ("Main", Color.gray, 1.5f);
+		Initiate.Fade ("Main", Color.black, 1.5f);
 		//SceneManager.LoadScene ("Main");
+	}
+
+	public void inputVisible(){
+		//inputUrl.text = "";
+		if (inputUrl.activeSelf)
+			inputUrl.SetActive (false);
+		else
+			inputUrl.SetActive (true);
+	}
+
+	public void urlDownload(string url){
+		inputUrl.SetActive(false);
+		StartCoroutine (AsyncDownloadModel (url));
 	}
 
 	void Update ()
