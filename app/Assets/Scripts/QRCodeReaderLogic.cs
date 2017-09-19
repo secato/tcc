@@ -122,7 +122,7 @@ public class QRCodeReaderLogic : MonoBehaviour
 			AssetBundle bundle = DownloadHandlerAssetBundle.GetContent (request);
 
 
-			StaticData.objeto = bundle.LoadAsset<GameObject> ("modelo");
+			StaticData.objeto = bundle.LoadAsset<GameObject> ("model");
 			downloadImage.enabled = false;
 			PreviewModel ();
 			bundle.Unload (false);
@@ -135,7 +135,7 @@ public class QRCodeReaderLogic : MonoBehaviour
 		txtResult.text = "Pré-Visualização";
 		rawImage.enabled = false;
 		previewObject = StaticData.objeto;
-		previewObject.transform.localScale = new Vector3 (25, 25, 25);
+		//previewObject.transform.localScale = new Vector3 (25, 25, 25);
 		previewObject = Instantiate (previewObject, new Vector3 (0, -100, 250), Quaternion.identity);
 
 	}
