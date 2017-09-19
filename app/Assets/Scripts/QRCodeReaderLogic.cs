@@ -114,7 +114,8 @@ public class QRCodeReaderLogic : MonoBehaviour
 		} else {
 
 			while (!request.isDone) {
-				txtResult.text = (request.downloadProgress * 100).ToString().Substring(0,3);
+				//txtResult.text = request.downloadProgress.ToString ();
+				txtResult.text = Mathf.Round(request.downloadProgress * 100).ToString() + "%";
 				yield return null;
 			}
 			txtResult.text = "Download concluído...";
