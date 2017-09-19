@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3743480012
+CRC: 2667987819
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f8fb362d86f1ba51d38081ffd0af0d71
+    Hash: fc0a12d3660ce96573b42a60e171b10a
   TypeTreeHash:
     serializedVersion: 2
     Hash: d4e22bca998c188582dba61b6c905222
@@ -26,5 +26,5 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 Assets:
-- Assets/Models/OldRadio/Alpinist/model.prefab
+- Assets/Models/OldRadio/Okean/model.prefab
 Dependencies: []
