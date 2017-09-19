@@ -26,6 +26,11 @@
     color: rgb(184, 169, 5);
 }
 
+#copiarUrlButton {
+    display: block;
+    visibility: hidden;
+    margin-bottom: 5px;
+}
 
 
 .produto:hover div div h6{
@@ -44,7 +49,7 @@
 }
 
 .produto-imagem-thumb {
-    width: 80%;
+    width: 100%;
 }
 
 
