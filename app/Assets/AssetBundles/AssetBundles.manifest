@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 171996623
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: mesa
+      Dependencies: {}

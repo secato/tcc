@@ -48,7 +48,6 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	void HandleOnQRCodeFound (ZXing.BarcodeFormat barCodeType, string barCodeValue)
 	{
-		//Debug.Log (barCodeType + " __ " + barCodeValue);
 		rawImage.enabled = false;
 		txtResult.text = barCodeValue;
 		StartCoroutine (AsyncDownloadModel (barCodeValue));
@@ -115,7 +114,7 @@ public class QRCodeReaderLogic : MonoBehaviour
 		} else {
 
 			while (!request.isDone) {
-				txtResult.text = request.downloadProgress.ToString();
+				txtResult.text = (request.downloadProgress * 100).ToString().Substring(0,3);
 				yield return null;
 			}
 			txtResult.text = "Download concluído...";
