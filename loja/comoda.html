@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ARmazon</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="./assets/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="./css/principal.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="js/functions.js"></script>
+</head>
+
+<body onload="window.mobilecheck();">
+    <div class="container">
+        <!-- navbar superior -->
+        <nav class="navbar navbar-inverse navbar-superior" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">ARmazon</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <!-- <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul> -->
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control search-bar" placeholder="Buscar">
+                    </div>
+                    <button type="submit" class="btn btn-default">Buscar</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> &nbsp;Carrinho</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            Usuário <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;Perfil</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> &nbsp;Meus Pedidos</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> &nbsp;Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- navbar superior -->
+
+        <!-- navbar inferior -->
+        <nav class="navbar navbar-inverse navbar-inferior">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lojas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Tech Revolution</a></li>
+                        <li><a href="#">Explosão de Ofertas</a></li>
+                        <li><a href="#">XFit</a></li>
+                        <li><a href="#">Livraria</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#">Ofertas</a>
+                </li>
+                <li>
+                    <a href="#">Eletrodomésticos</a>
+                </li>
+                <li>
+                    <a href="#">Livros</a>
+                </li>
+                <li>
+                    <a href="#">Games</a>
+                </li>
+                <li>
+                    <a href="#">Moda</a>
+                </li>
+            </ul>
+        </nav>
+
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Móveis</li>
+            <li class="active">TV</li>
+        </ol>
+        <div class="row">
+
+            <div class="col-sm-5 col-md-5">
+                <div class="thumbnail">
+                    <img id="imgBox" src="img/comoda_detalhes.jpg" alt="...">
+                    <div class="caption">
+                        <div class="row center-block">
+                            <div class="col-md-4 ">
+                                <a onclick="mudarImagem('img/comoda_detalhes.jpg');" class="thumbnail produto-imagem-thumb" href="#imgBox">
+                                   <img src="img/comoda_detalhes.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a onclick="mudarImagem('img/comoda2.jpg');" class="thumbnail produto-imagem-thumb" href="#imgBox">
+                                    <img src="img/comoda2.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a onclick="mudarImagem('img/comoda_qr.jpg');" class="thumbnail produto-imagem-thumb">
+                                    <img src="img/comoda_qr.jpg" alt="...">
+                                </a>
+                                <button onclick="copyUrl('https://secato.github.io/tcc/loja/models/comoda');" id="btnCopiarUrl" style="visibility: hidden;" type="button" class="btn btn-large btn-block btn-default">Copiar URL 3D</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 col-md-7">
+                <div class="caption">
+                    <h4>Cômoda 4 gavetas premium</h4>
+                    <div class="thumbnail">
+                        <div class="row center-block">
+                            <div class="col-sm-6">
+                                <h3>
+                                    <strike> R$ 299,00</strike>
+                                </h3>
+                                <hgroup>
+                                    <h3><strong>   R$ 250,00</strong></h3>
+                                    <h4>no boleto</h4>
+                                </hgroup>
+
+                                <hr>
+                                <h5>3 X R$90,00 no cartão</h5>
+
+                            </div>
+                            <div class="col-sm-6 btn-group-vertical">
+                                <br>
+                                <a href="#" class="btn btn-success btn-lg" role="button">Comprar</a>
+                                <a href="#" class="btn btn-default btn-lg" role="button">Adicionar ao carrinho</a>
+                                <br><br>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="CEP" aria-describedby="basic-addon2">
+                                    <span class="input-group-addon" id="basic-addon2">Calcular Frete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <a href='http://play.google.com/store/'>
+                                <img class="googlePlayBadge" alt='Disponível no Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png'/>
+                            </a>
+                        <br>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                        <strong>&nbsp;Visualize em 3D</strong>, obtenha nosso aplicativo móvel, escaneie o código de barras
+                        ao lado e visualize o produto no seu ambiente.
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="navbar-fixed-bottom">
+                Desenvolvido por Felipe Secato como parte do trabalho de conclusão de curso. Mais informações no <a href="https://github.com/secato/tcc">repositório.</a>
+            </footer>
+
+        </div>
+
+        <!-- jQuery -->
+        <script src="./assets/jquery/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>

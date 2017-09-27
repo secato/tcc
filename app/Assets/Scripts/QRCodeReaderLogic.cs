@@ -104,35 +104,45 @@ public class QRCodeReaderLogic : MonoBehaviour
 		downloadImage.enabled = true;
 		UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequest.GetAssetBundle (url, 0);
 		//yield return request.Send ();
-		request.Send();
+		request.Send ();
 
 
 		txtResult.text = "Downloading...";
+		//if (request.isError) {
+		//	Debug.Log (request.error);
+		//		txtResult.text = request.error;
+		//	} else {
+
+		while (!request.isDone) {
+			//txtResult.text = request.downloadProgress.ToString ();
+			txtResult.text = Mathf.Round (request.downloadProgress * 100).ToString () + "%";
+			yield return null;
+		}
+
 		if (request.isError) {
 			Debug.Log (request.error);
-			txtResult.text = request.error;
-		} else {
-
-			while (!request.isDone) {
-				//txtResult.text = request.downloadProgress.ToString ();
-				txtResult.text = Mathf.Round(request.downloadProgress * 100).ToString() + "%";
-				yield return null;
-			}
-			txtResult.text = "Download concluído...";
-			AssetBundle bundle = DownloadHandlerAssetBundle.GetContent (request);
-
-
-			StaticData.objeto = bundle.LoadAsset<GameObject> ("model");
+			txtResult.text = "Não foi possível obter o modelo 3D";
 			downloadImage.enabled = false;
+		} else {
+			AssetBundle bundle = DownloadHandlerAssetBundle.GetContent (request);
+			if (bundle) {
+				txtResult.text = "Download concluído...";
+			
+				StaticData.objeto = bundle.LoadAsset<GameObject> ("model");
+				downloadImage.enabled = false;
 
-			if (previewObject)
-				Destroy(previewObject);
+				if (previewObject)
+					Destroy (previewObject);
 			
-			PreviewModel ();
-			bundle.Unload (false);
+				PreviewModel ();
+				bundle.Unload (false);
+			} else {
+				txtResult.text = "Não foi possível obter o modelo 3D";	
+			}
 		}
-			
 	}
+			
+	//}
 
 	void PreviewModel ()
 	{
@@ -141,7 +151,7 @@ public class QRCodeReaderLogic : MonoBehaviour
 		previewObject = StaticData.objeto;
 		//previewObject.transform.localScale = new Vector3 (25, 25, 25);
 
-		previewObject = Instantiate (previewObject, new Vector3 (0, -100, 250), Quaternion.identity);
+		previewObject = Instantiate (previewObject, new Vector3 (0, -100, 250), previewObject.transform.rotation);
 
 	}
 
@@ -151,7 +161,8 @@ public class QRCodeReaderLogic : MonoBehaviour
 		//SceneManager.LoadScene ("Main");
 	}
 
-	public void inputVisible(){
+	public void inputVisible ()
+	{
 		//inputUrl.text = "";
 		if (inputUrl.activeSelf)
 			inputUrl.SetActive (false);
@@ -159,9 +170,11 @@ public class QRCodeReaderLogic : MonoBehaviour
 			inputUrl.SetActive (true);
 	}
 
-	public void urlDownload(string url){
-		inputUrl.SetActive(false);
-		StartCoroutine (AsyncDownloadModel (url));
+	public void urlDownload (string url)
+	{
+		inputUrl.SetActive (false);
+		if (url != "")
+			StartCoroutine (AsyncDownloadModel (url));
 	}
 
 	void Update ()
@@ -194,7 +207,9 @@ public class QRCodeReaderLogic : MonoBehaviour
 				if (deltaMagnitudeDiff > 1.5f || deltaMagnitudeDiff < -1.5f) {
 					deltaMagnitudeDiff -= 1.5f;
 					Vector3 newScale = previewObject.transform.localScale - new Vector3 (deltaMagnitudeDiff, deltaMagnitudeDiff, deltaMagnitudeDiff);
-					previewObject.transform.localScale = newScale;
+						
+					if (newScale.x >= 10)
+						previewObject.transform.localScale = newScale;
 				}
 			}
 		}

@@ -59,10 +59,12 @@ namespace Kudan.AR
 
 				// Find the difference in distances between each frame.
 				float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-				if (deltaMagnitudeDiff > 1 || deltaMagnitudeDiff < -1) {
-					deltaMagnitudeDiff -= 1;
+				if (deltaMagnitudeDiff > 1.5f || deltaMagnitudeDiff < -1.5f) {
+					deltaMagnitudeDiff -= 1.5f;
 					Vector3 newScale = markerless.transform.GetChild(0).localScale - new Vector3 (deltaMagnitudeDiff, deltaMagnitudeDiff, deltaMagnitudeDiff);
-					markerless.transform.GetChild(0).localScale = newScale;
+					if (newScale.x >= 10)
+						markerless.transform.GetChild(0).localScale = newScale;
+					//markerless.transform.GetChild(0).localScale = newScale;
 				}
 			}
 		}
