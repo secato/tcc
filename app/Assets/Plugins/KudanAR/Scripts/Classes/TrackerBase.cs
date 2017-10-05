@@ -219,7 +219,7 @@ namespace Kudan.AR
 		/// </summary>
 		public abstract void StopInput();
 
-		public abstract bool AddTrackable (byte[] data, string id, bool extensible, bool autocrop);
+		public abstract bool AddTrackable (byte[] data, string id, bool extensible);
 
 		/// <summary>
 		/// Adds a trackable with a given set of data and ID.
@@ -279,10 +279,6 @@ namespace Kudan.AR
 		/// </summary>
 		/// <param name="status">Marker recovery is enabled if set to <c>true</c>, otherwise flow recovery is disabled. Default is false.</param>
 		public abstract void SetMarkerRecoveryStatus (bool status);
-
-		public abstract bool GetMarkerAutoCropStatus ();
-
-		public abstract void SetMarkerAutoCropStatus (bool status);
 
 		public abstract bool GetMarkerExtensibilityStatus ();
 

@@ -411,8 +411,7 @@ namespace Kudan.AR
 		/// <param name="data">The array of image data.</param>
 		/// <param name="id">A name applied to the trackable to identify it in the tracker while the app is running.</param>
 		/// <param name="extensible">If set to <c>true</c> the loaded trackable will use extended tracking.</param>
-		/// <param name="autocrop">If set to <c>true</c> the loaded trackable will use auto-cropping.</param>
-		public override bool AddTrackable(byte[] data, string id, bool extensible, bool autocrop)
+		public override bool AddTrackable(byte[] data, string id, bool extensible)
 		{
 			bool result = false;
 
@@ -753,43 +752,6 @@ namespace Kudan.AR
 			if (m_KudanAR_Instance != null)
 			{
 				m_KudanAR_Instance.Call ( "SetMarkerRecoveryStatus", status);
-			}
-			#endif
-		}
-
-		/// <summary>
-		/// Sets the marker auto crop status. Enabling  this feature causes the tracker to automatically crop markers so that only the most useful parts of it are used for tracking and detection.
-		/// While this uses up slightly more memory space, it also improves the speed of detection and tracking.
-		/// </summary>
-		/// <param name="status">Set to true if Automatic Cropping should be enabled, false if not.</param>
-		public override void SetMarkerAutoCropStatus (bool status)
-		{
-			#if UNITY_EDITOR || UNITY_IOS
-			NativeInterface.SetAutoCropMarkers(status);
-			#elif UNITY_ANDROID
-			if (m_KudanAR_Instance != null)
-			{
-				m_KudanAR_Instance.Call ( "SetAutoCropMarkers", status);
-			}
-			#endif
-		}
-
-		/// <summary>
-		/// Returns whether or not Automatic Cropping is enabled on the tracker.
-		/// </summary>
-		/// <returns><c>true</c>, if marker auto crop status was gotten, <c>false</c> if not.</returns>
-		public override bool GetMarkerAutoCropStatus()
-		{
-			#if UNITY_EDITOR || UNITY_IOS
-			return NativeInterface.GetAutoCropMarkerStatus();
-			#elif UNITY_ANDROID
-			if (m_KudanAR_Instance != null)
-			{
-				return m_KudanAR_Instance.Call<bool> ( "GetAutoCropMarkerStatus" );
-			}
-			else 
-			{
-				return false;
 			}
 			#endif
 		}

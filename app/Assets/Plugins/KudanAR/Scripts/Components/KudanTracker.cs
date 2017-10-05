@@ -73,14 +73,7 @@ namespace Kudan.AR
 		/// NOTE: The Recovery Mode uses slightly more CPU power while tracking. 
 		/// </summary>
 		public bool _markerRecoveryMode;
-
-		/// <summary>
-		/// Whether or not the markers that are loaded are automatically cropped of the redundant parts of the image e.g. white border around the image in the middle.
-		/// This allows images containing large borders to be used without sacrificing tracking resolution.
-		/// Cropping is automatic and makes no difference to how the trackable objects are used, the tracked region will never look cropped.
-		/// </summary>
-		public bool _markerAutoCrop;
-
+	
 		/// <summary>
 		/// Whether the markers should be used with Extensibility turned on. Please note this should only be used with stationary markers. That means that if your marker at all moves, you should not use this mode.
 		/// Extended Tracking and Detection is a feature where trackables can be extended by automatically creating new markers from the surrounding scene. 
@@ -290,7 +283,6 @@ namespace Kudan.AR
 				}
 
 				_trackerPlugin.SetMarkerRecoveryStatus(_markerRecoveryMode);
-				_trackerPlugin.SetMarkerAutoCropStatus (_markerAutoCrop);
 				_trackerPlugin.SetMarkerExtensibilityStatus (_markerExtensibility);
 
 				ChangeTrackingMethod(_defaultTrackingMethod);
@@ -394,7 +386,7 @@ namespace Kudan.AR
 		/// <param name="id">A name applied to the trackable to identify it in the tracker while the app is running.</param>
 		public void AddTrackable(byte[] data, string id)
 		{
-			_trackerPlugin.AddTrackable (data, id, _markerExtensibility, _markerAutoCrop);
+			_trackerPlugin.AddTrackable (data, id, _markerExtensibility);
 		}
 
 		/// <summary>
@@ -404,10 +396,9 @@ namespace Kudan.AR
 		/// <param name="data">The array of image data.</param>
 		/// <param name="id">A name applied to the trackable to identify it in the tracker while the app is running.</param>
 		/// <param name="extensible">If set to <c>true</c> the loaded trackable will use extended tracking.</param>
-		/// <param name="autocrop">If set to <c>true</c> the loaded trackable will use auto-cropping.</param>
-		public void AddTrackable(byte[] data, string id, bool extensible, bool autocrop)
+		public void AddTrackable(byte[] data, string id, bool extensible)
 		{
-			_trackerPlugin.AddTrackable (data, id, extensible, autocrop);
+			_trackerPlugin.AddTrackable (data, id, extensible);
 		}
 
 		/// <summary>

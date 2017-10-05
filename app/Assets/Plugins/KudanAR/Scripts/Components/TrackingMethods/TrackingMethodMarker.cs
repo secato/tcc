@@ -191,8 +191,6 @@ namespace Kudan.AR
 
 			GUILayout.Label ("Marker Recovery Status: " + Plugin.GetMarkerRecoveryStatus());
             
-			GUILayout.Label ("Marker Autocrop Status: " + Plugin.GetMarkerAutoCropStatus());
-            
 			GUILayout.Label ("Marker Extensibility Status: " + Plugin.GetMarkerExtensibilityStatus());
 
 			int numDetected = 0;

@@ -179,10 +179,6 @@ namespace Kudan.AR
 		bool GetMarkerRecoveryStatus();
 		void SetMarkerRecoveryStatus(bool status);
 
-		// AutoCrop Status
-		bool GetMarkerAutoCropStatus();
-		void SetMarkerAutoCropStatus (bool status);
-
 		// Extended Marker & Detection status
 		bool GetMarkerExtensibilityStatus ();
 		void SetMarkerExtensibilityStatus (bool status);

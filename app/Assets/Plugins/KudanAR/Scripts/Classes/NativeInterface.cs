@@ -142,21 +142,6 @@ namespace Kudan.AR
 		/// <returns><c>true</c>, if extensible markers status was gotten, <c>false</c> otherwise.</returns>
 		public static extern bool GetExtensibleMarkersStatus();
 
-		[DllImport(PLUGIN_FILE)]
-		/// <summary>
-		/// Sets AutoCrop for the newly added markers after this flag has been changed
-		/// </summary>
-		/// <param name="status">If set to <c>true</c> status.</param>
-		public static extern void SetAutoCropMarkers(bool status);
-
-		[DllImport(PLUGIN_FILE)]
-		/// <summary>
-		/// Gets the auto crop marker status.
-		/// </summary>
-		/// <returns><c>true</c>, if auto crop marker status was gotten, <c>false</c> otherwise.</returns>
-		public static extern bool GetAutoCropMarkerStatus();
-
-
         [DllImport(PLUGIN_FILE)]
 		/// <summary>
 		/// Gets the current position and rotation of the markerless driver being tracked.
