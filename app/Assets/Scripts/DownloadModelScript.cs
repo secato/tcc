@@ -10,47 +10,42 @@ public class DownloadModelScript : MonoBehaviour
 {
 
 	[SerializeField]
-	RawImage rawImage;
-
+	RawImage rawImage; // utilizado para mostrar a captura da camera
 	[SerializeField]
-	Text txtResult;
+	Text txtResult; // mostra algumas mensagens, progresso do download, entre outros.
 
-	GameObject previewObject;
+	GameObject previewObject; // variavel de apoio para instanciar uma prévia do objeto
 
-	public Image downloadImage;
+	public Image downloadImage; // imagem da animacao de download
+	public GameObject inputUrl; // campo de input da url
 
-	public GameObject inputUrl;
-
-	// Use this for initialization
 	IEnumerator Start ()
 	{
 		rawImage.enabled = false;
 		downloadImage.enabled = false;
 		inputUrl.SetActive (false);
 
+		// pede autorizacao para uso da camera na primeira vez
 		yield return Application.RequestUserAuthorization (UserAuthorization.WebCam);
 
+		// se ja tinha sido baixado um objeto previamente faz a pré-visualização deste
 		if (StaticData.objeto) {
 			PreviewModel ();
-		} else {
-			//ScanQRCode ();
-			//HandleOnQRCodeFound (ZXing.BarcodeFormat.AZTEC, "http://speedtest.ftp.otenet.gr/files/test1Gb.db");
-		}
-
+		} 
 	}
 
 	void OnEnable ()
 	{
-		// adicionando handlers
+		// adicionando handlers, isto é, os métodos que será chamados em caso de erro ou em caso de encontrar um qr code
 		QRCodeManager.onError += HandleOnError;
 		QRCodeManager.onQrCodeFound += HandleOnQRCodeFound;
 	}
 
 	void HandleOnQRCodeFound (ZXing.BarcodeFormat barCodeType, string barCodeValue)
 	{
-		rawImage.enabled = false;
-		txtResult.text = barCodeValue;
-		StartCoroutine (AsyncDownloadModel (barCodeValue));
+		rawImage.enabled = false; // desabilita a imagem que mostra a captura de video
+		txtResult.text = barCodeValue; // mostra o resultado do que foi escaneado no QR code
+		StartCoroutine (AsyncDownloadModel (barCodeValue)); // inicia uma rotina asíncrona para download do modelo 3D
 	}
 
 	void HandleOnError (string err)
@@ -58,20 +53,22 @@ public class DownloadModelScript : MonoBehaviour
 		Debug.LogError (err);
 	}
 
+	// método chamado pelo botão scan
 	public void ScanQRCode ()
 	{
-		rawImage.enabled = true;
-		if (previewObject) {
+		rawImage.enabled = true; // habilita a imagem que exibe a captura de video
+		if (previewObject) { // se tinha algum objeto sendo pré visualizado este é destruído e limpa o campo de texto
 			txtResult.text = "";
 			Destroy (previewObject);
 		}
 
+		// configuracoes basicas da camera
 		QRCodeManager.CameraSettings camSettings = new QRCodeManager.CameraSettings ();
 		string rearCamName = GetRearCamName ();
 		if (rearCamName != null) {
 			camSettings.deviceName = rearCamName;
 			camSettings.maintainAspectRatio = true;
-			camSettings.scanType = ScanType.ONCE;
+			camSettings.scanType = ScanType.ONCE; // escanear um código de barras uam vez e para o escaneamento.
 			QRCodeManager.Instance.ScanQRCode (camSettings, rawImage, 1f);
 		}
 		
@@ -95,81 +92,74 @@ public class DownloadModelScript : MonoBehaviour
 		return null;
 	}
 
-
-	#region MEUS METODOS
-
+	// rotina de download asícrona
 	IEnumerator AsyncDownloadModel (string url)
 	{
 		Debug.Log (url);
-		downloadImage.enabled = true;
-		UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequest.GetAssetBundle (url, 0);
-		//yield return request.Send ();
+		downloadImage.enabled = true; // habilita a imagem animada de download
+		UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequest.GetAssetBundle (url, 0); // faz uma requisicao web para determinada url
 		request.Send ();
 
-
 		txtResult.text = "Downloading...";
-		//if (request.isError) {
-		//	Debug.Log (request.error);
-		//		txtResult.text = request.error;
-		//	} else {
-
 		while (!request.isDone) {
-			//txtResult.text = request.downloadProgress.ToString ();
+			// exibe o resultado o progresso do download
 			txtResult.text = Mathf.Round (request.downloadProgress * 100).ToString () + "%";
 			yield return null;
 		}
 
+		// se acontecer algum erro
 		if (request.isError) {
 			Debug.Log (request.error);
 			txtResult.text = "Não foi possível obter o modelo 3D";
 			downloadImage.enabled = false;
 		} else {
+			// carrega o assetbundle
 			AssetBundle bundle = DownloadHandlerAssetBundle.GetContent (request);
+
+			// se carregado corretamente
 			if (bundle) {
 				txtResult.text = "Download concluído...";
-			
-				StaticData.objeto = bundle.LoadAsset<GameObject> ("model");
+				StaticData.objeto = bundle.LoadAsset<GameObject> ("model"); // obtem o objeto de nome model do asset bundle
 				downloadImage.enabled = false;
 
-				if (previewObject)
+				if (previewObject) // se já estava pré visualizando um objeto
 					Destroy (previewObject);
 			
-				PreviewModel ();
-				bundle.Unload (false);
+				PreviewModel (); // método para pré-visualizado um objeto
+				bundle.Unload (false); //evita um erro ao tentar importar o mesmo asset bundle mais de uma vez
 			} else {
 				txtResult.text = "Não foi possível obter o modelo 3D";	
 			}
 		}
 	}
-			
-	//}
 
+	//método de pré-visualização do modelo baixado
 	void PreviewModel ()
 	{
 		txtResult.text = "Pré-Visualização";
 		rawImage.enabled = false;
 		previewObject = StaticData.objeto;
-		//previewObject.transform.localScale = new Vector3 (25, 25, 25);
 
+		// o segundo parâmetro passa a posição inicial do objeto, -100 em Y é para ele ficar um pouco mais alto
 		previewObject = Instantiate (previewObject, new Vector3 (0, -100, 250), previewObject.transform.rotation);
 
 	}
 
+	// volta para a cena de RA
 	public void VoltarPrincipal ()
 	{
 		Initiate.Fade ("RA", Color.black, 1.5f);
-		//SceneManager.LoadScene ("Main");
 	}
 
 	public void inputVisible ()
 	{
-		//inputUrl.text = "";
 		if (inputUrl.activeSelf)
 			inputUrl.SetActive (false);
 		else
 			inputUrl.SetActive (true);
 	}
 
+	// ao clicar no botão OK do input
 	public void urlDownload (string url)
 	{
 		inputUrl.SetActive (false);
@@ -177,37 +167,44 @@ public class DownloadModelScript : MonoBehaviour
 			StartCoroutine (AsyncDownloadModel (url));
 	}
 
+
+	// update é chamado a cada frame
 	void Update ()
 	{
 
+		// se tiver algum objeto sendo pré visualizado
 		if (previewObject) {
+
+			// um dedo utilizado no touch, rotacao
 			if (Input.touchCount == 1) {
 				Touch touch0 = Input.GetTouch (0);
 
 				if (touch0.phase == TouchPhase.Moved) {
-					previewObject.transform.Rotate (0f, touch0.deltaPosition.x, 0f);
+					previewObject.transform.Rotate (0f, touch0.deltaPosition.x*0.75f, 0f);
 				}
 			}
 
+			// dois dedos utilizado no touch, movimento de pinça, escala
 			if (Input.touchCount == 2) {
-				//txtResult.text = "2 toque";
-				Touch touchZero = Input.GetTouch (0);
-				Touch touchOne = Input.GetTouch (1);
 
-				// Find the position in the previous frame of each touch.
+				Touch touchZero = Input.GetTouch (0); // primeiro toque
+				Touch touchOne = Input.GetTouch (1); // segundo toque
+
+				// obtem posicao anterior conforme move o dedo
 				Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
 				Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
-				// Find the magnitude of the vector (the distance) between the touches in each frame.
+				// obten a distancia dos dedos a cada frame
 				float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
 				float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
-				// Find the difference in distances between each frame.
+				// obtem a diferença das distancia e realiza a escala
 				float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 				if (deltaMagnitudeDiff > 1.5f || deltaMagnitudeDiff < -1.5f) {
 					deltaMagnitudeDiff -= 1.5f;
 					Vector3 newScale = previewObject.transform.localScale - new Vector3 (deltaMagnitudeDiff, deltaMagnitudeDiff, deltaMagnitudeDiff);
-						
+
+					// verificacao para evitar escalar o objeto negativamente
 					if (newScale.x >= 10)
 						previewObject.transform.localScale = newScale;
 				}
@@ -215,5 +212,4 @@ public class DownloadModelScript : MonoBehaviour
 		}
 	}
 
-	#endregion
 }
