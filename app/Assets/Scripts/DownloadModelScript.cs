@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 
-public class QRCodeReaderLogic : MonoBehaviour
+public class DownloadModelScript : MonoBehaviour
 {
 
 	[SerializeField]
@@ -157,7 +157,7 @@ public class QRCodeReaderLogic : MonoBehaviour
 
 	public void VoltarPrincipal ()
 	{
-		Initiate.Fade ("Main", Color.black, 1.5f);
+		Initiate.Fade ("RA", Color.black, 1.5f);
 		//SceneManager.LoadScene ("Main");
 	}
 
