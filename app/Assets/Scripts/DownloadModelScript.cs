@@ -96,8 +96,10 @@ public class DownloadModelScript : MonoBehaviour
 	IEnumerator AsyncDownloadModel (string url)
 	{
 		Debug.Log (url);
-		downloadImage.enabled = true; // habilita a imagem animada de download
-		UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequest.GetAssetBundle (url, 0); // faz uma requisicao web para determinada url
+		// habilita a imagem animada de download
+		downloadImage.enabled = true; 
+		// faz uma requisicao web para determinada url
+		UnityWebRequest request = UnityWebRequest.GetAssetBundle (url, 0); 
 		request.Send ();
 
 		txtResult.text = "Downloading...";
@@ -119,14 +121,18 @@ public class DownloadModelScript : MonoBehaviour
 			// se carregado corretamente
 			if (bundle) {
 				txtResult.text = "Download concluído...";
-				StaticData.objeto = bundle.LoadAsset<GameObject> ("model"); // obtem o objeto de nome model do asset bundle
+				// obtem o objeto de nome model do asset bundle
+				StaticData.objeto = bundle.LoadAsset<GameObject> ("model"); 
 				downloadImage.enabled = false;
 
-				if (previewObject) // se já estava pré visualizando um objeto
+				// se já estava pré visualizando um objeto
+				if (previewObject) 
+					// destroi o objento
 					Destroy (previewObject);
-			
-				PreviewModel (); // método para pré-visualizado um objeto
-				bundle.Unload (false); //evita um erro ao tentar importar o mesmo asset bundle mais de uma vez
+				// chama o método responsável pela pré-visualização
+				PreviewModel (); 
+				//evita um erro ao tentar importar o mesmo asset bundle mais de uma vez
+				bundle.Unload (false); 
 			} else {
 				txtResult.text = "Não foi possível obter o modelo 3D";	
 			}

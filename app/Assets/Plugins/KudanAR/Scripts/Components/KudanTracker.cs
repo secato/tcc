@@ -836,7 +836,8 @@ namespace Kudan.AR
 
 			byte[] bytes = screen.EncodeToJPG ();
 
-			string filePath = Application.dataPath + "/Screenshot - " + Time.unscaledTime + ".jpg";
+			//string filePath = Application.dataPath + "/Screenshot - " + Time.unscaledTime + ".jpg";
+			string filePath = Application.persistentDataPath + "/Screenshot - " + Time.unscaledTime + ".jpg";
 			System.IO.File.WriteAllBytes (filePath, bytes);
 
 			Debug.Log ("Saved screenshot at: " + filePath);

@@ -97,13 +97,14 @@ namespace Kudan.AR
 		public void Rastrear ()
 		{
 			if (!_kudanTracker.ArbiTrackIsTracking ()) {
-				// from the floor placer.
-				Vector3 floorPosition;			// The current position in 3D space of the floor
-				Quaternion floorOrientation;	// The current orientation of the floor in 3D space, relative to the device
+				// baseado no icone de posicionamento (Arrow)
+				Vector3 floorPosition;			
+				Quaternion floorOrientation;
 
-				_kudanTracker.FloorPlaceGetPose (out floorPosition, out floorOrientation);	// Gets the position and orientation of the floor and assigns the referenced Vector3 and Quaternion those values
-				_kudanTracker.ArbiTrackStart (floorPosition, floorOrientation);				// Starts markerless tracking based upon the given floor position and orientations
-
+				// obtem o posicionamento e orientacao do "piso" da cena
+				_kudanTracker.FloorPlaceGetPose (out floorPosition, out floorOrientation);
+				// inicia o rastreamento sem marcador baseado nos parametros de posicao e orientacao
+				_kudanTracker.ArbiTrackStart (floorPosition, floorOrientation);				
 			} else {
 				_kudanTracker.ArbiTrackStop ();
 			}
