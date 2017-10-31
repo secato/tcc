@@ -37,10 +37,7 @@ https://secato.github.io/tcc/loja/index.html
 4 - Clique no botão RA, escolha a altura entre o seu dispositivo móvel e o chão e clique no botão do meio (ícone de olho), o objeto 3D será posicionado no lugar do marcador vermelho.
 
 5 - Se possível avalie a aplicação preenchendo o questionário disponível em:
-
-(em breve)
-
-
+<a href='https://goo.gl/btGWHE'>https://goo.gl/btGWHE</a>
 
 
 ----
