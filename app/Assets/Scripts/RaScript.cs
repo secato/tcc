@@ -34,7 +34,7 @@ namespace Kudan.AR
 				btnRastrear.enabled = false;
 			} else {
 				// se existir instancia este como filho de markerless, isso é só para instanciar o objeto, ele só ficara visível quando for clicado no ícone de "olho"
-				Instantiate (StaticData.objeto, new Vector3 (0, 0, 0), Quaternion.identity, markerless.transform);
+				Instantiate (StaticData.objeto, new Vector3 (0, 0, 0), StaticData.objeto.transform.rotation, markerless.transform);
 			}
 		}
 
