@@ -1,5 +1,9 @@
 ### [English](#english)
+<<<<<<< HEAD
 ### [Portuguese](#português)
+=======
+### [Português](#português)
+>>>>>>> bc5780cc70fe40574bda1348bae28234b732e039
 
 <br />
 
